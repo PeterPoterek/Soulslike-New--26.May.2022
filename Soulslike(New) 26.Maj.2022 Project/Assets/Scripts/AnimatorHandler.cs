@@ -8,6 +8,8 @@ namespace L
     public class AnimatorHandler : MonoBehaviour
     {
         public Animator anim;
+        public InputHandler inputHandler;
+        public PlayerLocomotion playerLocomotion;
         int vertical;
         int horizontal;
 
@@ -16,6 +18,8 @@ namespace L
         public void Initialize()
         {
             anim = GetComponent<Animator>();
+            inputHandler = GetComponentInParent<InputHandler>();
+            playerLocomotion = GetComponentInParent<PlayerLocomotion>();
             vertical = Animator.StringToHash("Vertical");
             horizontal = Animator.StringToHash("Horizontal");
         }
@@ -76,6 +80,14 @@ namespace L
 
         }
 
+        public void PlayTargetAnimation(string targetAnim, bool isInteracting)
+        {
+            anim.applyRootMotion = isInteracting;
+            anim.SetBool("isInteracting",isInteracting);
+            anim.CrossFade(targetAnim,0.2f);
+            
+        }
+
         public void CanRotate()
         {
             canRotate = true;
@@ -83,6 +95,19 @@ namespace L
         public void StopRotation()
         {
             canRotate = false;
+        }
+
+        private void OnAnimatorMove()
+        {
+            if(inputHandler.isInteracting == false)
+            return;
+
+            float delta = Time.deltaTime;
+            playerLocomotion.rigidbody.drag = 0;
+            Vector3 deltaPostion = anim.deltaPosition;
+            deltaPostion.y = 0;
+            Vector3 velocity = deltaPostion / delta;
+            playerLocomotion.rigidbody.velocity = velocity; 
         }
     }
 

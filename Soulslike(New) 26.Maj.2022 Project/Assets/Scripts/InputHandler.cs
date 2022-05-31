@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 namespace L
 {
     public class InputHandler : MonoBehaviour
@@ -12,6 +12,10 @@ namespace L
     public float mouseX;
     public float mouseY;
 
+    public bool b_Input;
+    public bool rollFlag;
+    public bool isInteracting;
+
     PlayerControls inputActions;
     CameraHandler cameraHandler;
 
@@ -21,7 +25,6 @@ namespace L
     private void Awake()
     {
         cameraHandler = CameraHandler.singleton;
-        
     }
     private void FixedUpdate()
     {
@@ -32,7 +35,6 @@ namespace L
             cameraHandler.FollowTarget(delta);
             cameraHandler.HandleCameraRotation(delta,mouseX,mouseY);
         }
-        
     }
 
     public void OnEnable()
@@ -55,6 +57,7 @@ namespace L
     public void TickInput(float delta)
     {
         MoveInput(delta);
+        HandleRollingInput(delta);
     }
 
     private void MoveInput(float delta)
@@ -66,6 +69,15 @@ namespace L
         mouseY = cameraInput.y;
 
 
+    }
+
+    private void HandleRollingInput(float delta)
+    {
+        b_Input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+        if(b_Input)
+        {
+            rollFlag = true;
+        }
     }
  }
 }
