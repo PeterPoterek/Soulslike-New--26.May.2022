@@ -19,6 +19,7 @@ namespace L
         {
             inputHandler.isInteracting = anim.GetBool("isInteracting");
             inputHandler.rollFlag = false;
+            inputHandler.sprintFlag = false;
             
         }
 

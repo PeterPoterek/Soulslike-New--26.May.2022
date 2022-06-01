@@ -23,7 +23,7 @@ namespace L
             vertical = Animator.StringToHash("Vertical");
             horizontal = Animator.StringToHash("Horizontal");
         }
-        public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement)
+        public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting)
         {
             #region Vertical
             float v = 0;
@@ -75,6 +75,13 @@ namespace L
 
             #endregion
 
+
+            
+            if(isSprinting)
+            {
+                v = 2;
+                h = horizontalMovement;
+            }
             anim.SetFloat(vertical,v,0.1f,Time.deltaTime);
             anim.SetFloat(horizontal,h,0.1f,Time.deltaTime);
 
@@ -107,7 +114,7 @@ namespace L
             Vector3 deltaPostion = anim.deltaPosition;
             deltaPostion.y = 0;
             Vector3 velocity = deltaPostion / delta;
-            playerLocomotion.rigidbody.velocity = velocity; 
+            playerLocomotion.rigidbody.velocity = velocity;
         }
     }
 
