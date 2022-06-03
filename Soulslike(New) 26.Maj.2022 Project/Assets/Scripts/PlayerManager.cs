@@ -16,6 +16,8 @@ namespace L
 
         [Header("Player Flags")]
         public bool isSprinting;
+        public bool isInAir;
+        public bool isGrounded;
 
 
 
@@ -34,13 +36,13 @@ namespace L
         private void Update()
         {
             float delta = Time.deltaTime;
-            
             isInteracting = anim.GetBool("isInteracting");
 
 
             inputHandler.TickInput(delta);
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
+            playerLocomotion.HandleFalling(delta,playerLocomotion.moveDirection);
 
         }
         private void FixedUpdate()
@@ -63,6 +65,10 @@ namespace L
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
             isSprinting = inputHandler.b_Input;
+            if(isInAir)
+            {
+                playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+            }
         }
 
    }
