@@ -156,7 +156,7 @@ namespace L
             if(playerManager.isInAir)
             {
                 rigidbody.AddForce(-Vector3.up * fallingSpeed);
-                rigidbody.AddForce(moveDirection * fallingSpeed / 10f);
+                rigidbody.AddForce(moveDirection * fallingSpeed / 5f);
             }
 
             Vector3 dir = moveDirection;
@@ -178,6 +178,7 @@ namespace L
                     if(inAirTimer > 0.5f)
                     {
                         animatorHandler.PlayTargetAnimation("Land",true);
+                        inAirTimer = 0;
                     }
                     else
                     {
