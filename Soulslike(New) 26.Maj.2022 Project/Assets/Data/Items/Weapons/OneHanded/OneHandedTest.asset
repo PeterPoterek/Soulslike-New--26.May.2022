@@ -16,3 +16,5 @@ MonoBehaviour:
   itemName: OneHandedTest
   modelPrefab: {fileID: 4150021682158327776, guid: bd5094e65cb50624081fe961eba76051, type: 3}
   isUnarmed: 0
+  OH_Light_Attack_1: OH_Light_Attack_01
+  OH_Heavy_Attack_1: OH_Heavy_Attack_01

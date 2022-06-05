@@ -9,6 +9,10 @@ namespace L
     {
         public GameObject modelPrefab;
         public bool isUnarmed;
+
+        [Header("One Handed Attacks")]
+        public string OH_Light_Attack_1;
+        public string OH_Heavy_Attack_1;
         
     }
 
