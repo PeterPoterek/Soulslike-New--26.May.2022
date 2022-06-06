@@ -25,6 +25,8 @@ namespace L
         float minimumDistanceNeedToBeginFall = 1f;
         [SerializeField]
         float groundDirectionRayDistance = 0.2f;
+        [SerializeField]
+        float jumpPush = 5f;
         LayerMask ignoreForGroundCheck;
         public float inAirTimer;
 
@@ -169,8 +171,8 @@ namespace L
             }
             if(playerManager.isInAir)
             {
-                rigidbody.AddForce(-Vector3.up * fallingSpeed);
-                rigidbody.AddForce(moveDirection * fallingSpeed / 5f);
+                rigidbody.AddForce(-Vector3.up * fallingSpeed );
+                rigidbody.AddForce(moveDirection * fallingSpeed / jumpPush);
             }
 
             Vector3 dir = moveDirection;
@@ -209,6 +211,7 @@ namespace L
                 {
                     playerManager.isGrounded = false;
                 }
+                
                 if(playerManager.isInAir == false)
                 {
                     if(playerManager.isInteracting == false)
@@ -227,7 +230,7 @@ namespace L
             {
                 if(playerManager.isInteracting || inputHandler.moveAmount > 0)
                 {
-                    myTransform.position = Vector3.Lerp(myTransform.position,targetPosition,Time.deltaTime);
+                    myTransform.position = Vector3.Lerp(myTransform.position,targetPosition,delta);
 
                 }
                 else
