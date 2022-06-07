@@ -41,6 +41,12 @@ namespace L
             ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
         }
 
+        private void Start()
+        {
+            targetTransform = FindObjectOfType<PlayerManager>().transform;
+
+        }
+
         public void FollowTarget(float delta)
         {
             Vector3 targetPosition = Vector3.SmoothDamp

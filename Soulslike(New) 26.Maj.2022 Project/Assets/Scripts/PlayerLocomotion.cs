@@ -225,23 +225,15 @@ namespace L
                     playerManager.isInAir = true;
                 }
             }
-
-            if(playerManager.isGrounded)
+            if(playerManager.isInteracting || inputHandler.moveAmount > 0)
             {
-                if(playerManager.isInteracting || inputHandler.moveAmount > 0)
-                {
-                    myTransform.position = Vector3.Lerp(myTransform.position,targetPosition,delta);
+                myTransform.position = Vector3.Lerp(myTransform.position,targetPosition,delta);
 
-                }
-                else
-                {
-                    myTransform.position = targetPosition;
-                } 
             }
-
-
-
-
+            else
+            {
+                myTransform.position = targetPosition;
+            }
         }
         #endregion
     }
