@@ -18,6 +18,7 @@ namespace L
         public bool isSprinting;
         public bool isInAir;
         public bool isGrounded;
+        public bool canDoCombo;
 
 
 
@@ -37,6 +38,7 @@ namespace L
         {
             float delta = Time.deltaTime;
             isInteracting = anim.GetBool("isInteracting");
+            canDoCombo = anim.GetBool("canDoCombo");
 
 
             inputHandler.TickInput(delta);
