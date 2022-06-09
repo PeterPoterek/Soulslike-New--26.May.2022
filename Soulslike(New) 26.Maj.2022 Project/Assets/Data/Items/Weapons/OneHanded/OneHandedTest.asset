@@ -16,6 +16,8 @@ MonoBehaviour:
   itemName: OneHandedTest
   modelPrefab: {fileID: 4150021682158327776, guid: bd5094e65cb50624081fe961eba76051, type: 3}
   isUnarmed: 0
+  right_Hand_Idle: Right_Arm_Idle_01
+  left_Hand_Idle: Left_Arm_Idle_01
   OH_Light_Attack_1: OH_Light_Attack_01
   OH_Light_Attack_2: OH_Light_Attack_02
   OH_Light_Attack_3: OH_Light_Attack_03

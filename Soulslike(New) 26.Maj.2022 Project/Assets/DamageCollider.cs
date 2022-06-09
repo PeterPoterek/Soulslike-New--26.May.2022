@@ -32,7 +32,7 @@ namespace L
             if(collision.tag == "Player")
             {
                PlayerStats playerStats = collision.GetComponent<PlayerStats>();
-               
+    
 
                if(playerStats != null)
                {
