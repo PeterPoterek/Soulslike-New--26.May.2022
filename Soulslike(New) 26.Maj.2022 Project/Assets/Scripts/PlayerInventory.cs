@@ -27,6 +27,7 @@ namespace L
 
         private void Start()
         {
+
             /*
             rightWeapon = weaponInRightHandSlots[currentRightWeaponIndex];
             leftWeapon = weaponInLeftHandSlots[currentLeftWeaponIndex];
