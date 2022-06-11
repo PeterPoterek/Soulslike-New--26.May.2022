@@ -17,6 +17,7 @@ namespace L
                 if(weapon.itemIcon != null)
                 {
                  rightWeaponIcon.sprite = weapon.itemIcon;
+                 rightWeaponIcon.transform.localScale = new Vector3(3,1.2f); // workaround
                  rightWeaponIcon.enabled = true;
 
                 }
@@ -32,6 +33,7 @@ namespace L
                 if(weapon.itemIcon != null)
                 {
                  leftWeaponIcon.sprite = weapon.itemIcon;
+                 leftWeaponIcon.transform.localScale = new Vector3(3,1.2f); // workaround
                  leftWeaponIcon.enabled = true;
 
                 }
