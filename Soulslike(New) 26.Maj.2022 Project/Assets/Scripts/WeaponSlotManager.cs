@@ -9,6 +9,8 @@ namespace L
         WeaponHolderSlot leftHandSlot;
         WeaponHolderSlot rightHandSlot;
 
+        
+
         DamageCollider leftHandDamageCollider;
         DamageCollider rightHandDamageCollider;
 

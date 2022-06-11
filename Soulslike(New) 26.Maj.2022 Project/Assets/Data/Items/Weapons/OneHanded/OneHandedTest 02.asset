@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7f3a4638e3c3724aa92841d69db6a0d, type: 3}
-  m_Name: OneHandedTest
+  m_Name: OneHandedTest 02
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
-  itemName: OneHandedTest
-  modelPrefab: {fileID: 4150021682158327776, guid: bd5094e65cb50624081fe961eba76051, type: 3}
+  itemName: OneHandedTest 02
+  modelPrefab: {fileID: 2165738848520326099, guid: aa673f3d2abbd37459ac83ec788183bb, type: 3}
   isUnarmed: 0
   right_Hand_Idle: Right_Arm_Idle_01
   left_Hand_Idle: Left_Arm_Idle_01
