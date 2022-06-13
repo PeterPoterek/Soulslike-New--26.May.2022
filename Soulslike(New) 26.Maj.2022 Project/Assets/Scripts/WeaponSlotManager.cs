@@ -14,15 +14,19 @@ namespace L
         DamageCollider leftHandDamageCollider;
         DamageCollider rightHandDamageCollider;
 
+        public WeaponItem attackingWeapon;
+
         Animator animator;
 
         QuickSlotsUI quickSlotsUI;
+        PlayerStats playerStats;
 
         private void Awake()
         {
 
             animator = GetComponent<Animator>();
-            quickSlotsUI = FindObjectOfType<QuickSlotsUI>();  
+            quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
+            playerStats = GetComponentInParent<PlayerStats>();
 
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
 
@@ -80,6 +84,7 @@ namespace L
         }
 
         #region Handle Weapon Damage Colliders
+        
 
         void LoadLeftWeaponDamageCollider()
         {
@@ -112,6 +117,22 @@ namespace L
             leftHandDamageCollider.DisableDamageCollider();
         }
         #endregion
+
+        #region Handle Weapons Stamina Damage
+        public void DrainStaminaLightAttack()
+        {
+            playerStats.TakeStaminaDamage
+            (Mathf.RoundToInt(attackingWeapon.baseStaminaCost * attackingWeapon.lightAttackMultiplier));
+        }
+        public void DrainStaminaHeavyAttack()
+        {
+            playerStats.TakeStaminaDamage
+            (Mathf.RoundToInt(attackingWeapon.baseStaminaCost * attackingWeapon.heavyAttackMultiplier));
+        }
+        #endregion
+
+
+
     }
 
 }

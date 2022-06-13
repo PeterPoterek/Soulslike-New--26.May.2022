@@ -6,11 +6,19 @@ namespace L
 {
     public class PlayerStats : MonoBehaviour
     {
+        [Header("Health")]
         public int healthLevel = 10;
         public int maxHealth;
         public int currHealth;
+        [Header("Stamina")]
+        public int staminaLevel = 10;
+        public int maxStamina;
+        public int currStamina;
+
+
 
         public Healthbar healthbar;
+        public Staminabar staminabar;
 
         AnimatorHandler animatorHandler;
 
@@ -25,12 +33,21 @@ namespace L
             maxHealth = SetMaxHealthFromHealthLevel();
             currHealth = maxHealth;
             healthbar.SetMaxHealth(maxHealth);
+
+            maxStamina = SetMaxStaminaFromStaminaLevel();
+            currStamina = maxStamina;
+            staminabar.SetMaxStamina(maxStamina);
         }
 
         int SetMaxHealthFromHealthLevel()
         {
             maxHealth = healthLevel * 10;
             return maxHealth;
+        }
+        int SetMaxStaminaFromStaminaLevel()
+        {
+            maxStamina = staminaLevel * 10;
+            return maxStamina;
         }
 
         public void TakeDamage(int damage)
@@ -47,6 +64,13 @@ namespace L
                 animatorHandler.PlayTargetAnimation("Death",true);
             }
         }
+
+        public void TakeStaminaDamage(int damage)
+        {
+            currStamina = currStamina - damage;
+            staminabar.SetCurrentStamina(currStamina);
+        }
+
 
 
     }
