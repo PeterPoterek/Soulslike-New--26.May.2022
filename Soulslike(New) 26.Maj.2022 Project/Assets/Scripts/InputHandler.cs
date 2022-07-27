@@ -13,6 +13,7 @@ namespace L
     public float mouseY;
 
     public bool b_Input;
+    public bool a_Input;
     public bool rb_Input;
     public bool rt_Input;
 
@@ -70,6 +71,7 @@ namespace L
         HandleRollingInput(delta);
         HandleAttackInput(delta);
         HandleQuickslotsInput();
+        HandleInteractableInput();
         
     }
 
@@ -162,6 +164,13 @@ namespace L
         {
             playerInventory.ChangeLeftWeapon();
         }
+    }
+
+    void HandleInteractableInput()
+    {
+        inputActions.PlayerActions.A.performed += i => a_Input = true;
+
+        
     }
  }
 }
