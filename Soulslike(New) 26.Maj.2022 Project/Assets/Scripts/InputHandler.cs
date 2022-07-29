@@ -16,6 +16,7 @@ namespace L
     public bool a_Input;
     public bool rb_Input;
     public bool rt_Input;
+    public bool jump_Input;
 
     public bool d_Pad_Up;
     public bool d_Pad_Down;
@@ -72,6 +73,7 @@ namespace L
         HandleAttackInput(delta);
         HandleQuickslotsInput();
         HandleInteractableInput();
+        HandleJumpInput();
         
     }
 
@@ -171,6 +173,12 @@ namespace L
         inputActions.PlayerActions.A.performed += i => a_Input = true;
 
         
+    }
+
+    void HandleJumpInput()
+    {
+        inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
+
     }
  }
 }
