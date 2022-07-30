@@ -17,6 +17,7 @@ namespace L
     public bool rb_Input;
     public bool rt_Input;
     public bool jump_Input;
+    public bool inventory_Input;
 
     public bool d_Pad_Up;
     public bool d_Pad_Down;
@@ -27,12 +28,14 @@ namespace L
     public bool rollFlag;
     public bool sprintFlag;
     public bool comboFlag;
+    public bool inventoryFlag;
     public float rollInputTimer;
 
     PlayerControls inputActions;
     PlayerAttacker playerAttacker;
     PlayerInventory playerInventory;
     PlayerManager playerManager;
+    UIManager uIManager;
 
     Vector2 movementInput;
     Vector2 cameraInput;
@@ -43,6 +46,7 @@ namespace L
         playerAttacker = GetComponentInChildren<PlayerAttacker>();
         playerInventory = GetComponentInChildren<PlayerInventory>();
         playerManager = GetComponent<PlayerManager>();
+        uIManager = FindObjectOfType<UIManager>();
         
     }
 
@@ -74,7 +78,7 @@ namespace L
         HandleQuickslotsInput();
         HandleInteractableInput();
         HandleJumpInput();
-        
+        HandleInventoryInput();
     }
 
     private void MoveInput(float delta)
@@ -172,13 +176,30 @@ namespace L
     {
         inputActions.PlayerActions.A.performed += i => a_Input = true;
 
-        
     }
 
     void HandleJumpInput()
     {
         inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
 
+    }
+    void HandleInventoryInput()
+    {
+        inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
+
+        if(inventory_Input)
+        {
+            inventoryFlag = !inventoryFlag;
+
+            if(inventoryFlag)
+            {
+                uIManager.OpenSelectWindow();
+            }
+            else
+            {
+                uIManager.CloseSelectWindow();
+            }
+        }
     }
  }
 }
