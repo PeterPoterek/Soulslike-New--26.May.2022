@@ -19,7 +19,7 @@ namespace L
 
         public float lookSpeed = 0.1f;
         public float followSpeed = 0.1f;
-        private float pivotSpeed = 0.3f;
+        public float pivotSpeed = 0.3f;
 
         private float targetPosition;
         private float defaultPositon;
@@ -58,8 +58,8 @@ namespace L
 
         public void HandleCameraRotation(float delta,float mouseXInput,float mouseYInput)
         {
-            lookAngle += (mouseXInput * lookSpeed) / delta;
-            pivotAngle -= (mouseYInput * pivotSpeed) / delta;
+            lookAngle += mouseXInput * lookSpeed * delta;
+            pivotAngle -= mouseYInput * pivotSpeed * delta;
             pivotAngle = Mathf.Clamp(pivotAngle,minimumPivot,maximumPivot);
 
             Vector3 rotation = Vector3.zero;
