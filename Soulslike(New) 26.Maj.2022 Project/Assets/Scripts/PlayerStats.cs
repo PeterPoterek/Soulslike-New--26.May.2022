@@ -27,6 +27,7 @@ namespace L
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
             healthbar = FindObjectOfType<Healthbar>();
             staminabar = FindObjectOfType<Staminabar>();
+            
         }
 
 
