@@ -25,6 +25,8 @@ namespace L
 
         private void Awake() {
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            healthbar = FindObjectOfType<Healthbar>();
+            staminabar = FindObjectOfType<Staminabar>();
         }
 
 
