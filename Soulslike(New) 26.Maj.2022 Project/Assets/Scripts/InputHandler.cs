@@ -60,6 +60,16 @@ namespace L
             inputActions = new PlayerControls();
             inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
             inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+
+            inputActions.PlayerActions.RB.performed += i => rb_Input = true;
+            inputActions.PlayerActions.RT.performed += i => rt_Input = true;
+
+            inputActions.PlayerActions.A.performed += i => a_Input = true;
+            inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
+            inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
+
+
+
         }
 
         inputActions.Enable();
@@ -76,8 +86,6 @@ namespace L
         HandleRollingInput(delta);
         HandleAttackInput(delta);
         HandleQuickslotsInput();
-        HandleInteractableInput();
-        HandleJumpInput();
         HandleInventoryInput();
     }
 
@@ -95,10 +103,11 @@ namespace L
     private void HandleRollingInput(float delta)
     {
         b_Input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+        sprintFlag = b_Input;
+
         if(b_Input)
         {
             rollInputTimer += delta;
-            sprintFlag = true;
 
         }
         else
@@ -115,8 +124,7 @@ namespace L
 
     private void HandleAttackInput(float delta)
     {
-        inputActions.PlayerActions.RB.performed += i => rb_Input = true;
-        inputActions.PlayerActions.RT.performed += i => rt_Input = true;
+      
         if(rb_Input)
         {
             if(playerManager.canDoCombo)
@@ -172,20 +180,10 @@ namespace L
         }
     }
 
-    void HandleInteractableInput()
-    {
-        inputActions.PlayerActions.A.performed += i => a_Input = true;
-
-    }
-
-    void HandleJumpInput()
-    {
-        inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
-
-    }
+    
+ 
     void HandleInventoryInput()
     {
-        inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
 
         if(inventory_Input)
         {
