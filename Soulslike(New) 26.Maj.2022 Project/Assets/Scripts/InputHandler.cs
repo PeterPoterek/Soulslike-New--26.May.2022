@@ -19,6 +19,8 @@ namespace L
     public bool jump_Input;
     public bool inventory_Input;
     public bool lockOnInput;
+    public bool right_Stick_Right_Input;
+    public bool right_Stick_Left_Input;
 
     public bool d_Pad_Up;
     public bool d_Pad_Down;
@@ -71,6 +73,8 @@ namespace L
             inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
             inputActions.PlayerActions.Inventory.performed += i => inventory_Input = true;
             inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
+            inputActions.PlayerMovement.LockOnRight.performed += i => right_Stick_Right_Input = true;
+            inputActions.PlayerMovement.LockOnLeft.performed += i => right_Stick_Left_Input = true;
 
 
 
@@ -213,7 +217,6 @@ namespace L
     {
         if(lockOnInput && lockOnFlag == false)
         {
-            cameraHandler.ClearLockOnTargets();
             lockOnInput = false;
             cameraHandler.HandleLockOn();
             if(cameraHandler.nearestLockOnTarget != null)
@@ -229,6 +232,27 @@ namespace L
             lockOnInput = false;
             lockOnFlag = false;
             cameraHandler.ClearLockOnTargets();
+        }
+
+        if(lockOnFlag && right_Stick_Left_Input)
+        {
+            right_Stick_Left_Input = false;
+            cameraHandler.HandleLockOn();
+            if(cameraHandler.leftLockOnTarget != null)
+            {
+                cameraHandler.currentLockOnTarget = cameraHandler.leftLockOnTarget;
+
+            }
+        }
+
+        if(lockOnFlag && right_Stick_Right_Input)
+        {
+            right_Stick_Right_Input = false;
+            cameraHandler.HandleLockOn();
+            if(cameraHandler.rightLockOnTarget != null)
+            {
+                cameraHandler.currentLockOnTarget = cameraHandler.rightLockOnTarget;
+            }
         }
     }
 
