@@ -7,6 +7,7 @@ namespace L
     public class CameraHandler : MonoBehaviour
     {
         InputHandler inputHandler;
+        PlayerManager playerManager;
         public Transform targetTransform;
         public Transform cameraTransform;
         public Transform cameraPivotTransform;
@@ -14,16 +15,17 @@ namespace L
 
         private Vector3 cameraTransformPosition;
         public LayerMask ignoreLayers;
+        public LayerMask environmentLayer;
         private Vector3 cameraFollowVelocity = Vector3.zero;
 
-        public static CameraHandler singleton;
+        public static CameraHandler singelton;
 
         public float lookSpeed = 0.1f;
         public float followSpeed = 0.1f;
         public float pivotSpeed = 0.3f;
 
         private float targetPosition;
-        private float defaultPositon;
+        private float defaultPosition;
         private float lookAngle;
         private float pivotAngle;
         public float minimumPivot = -35f;
@@ -33,6 +35,9 @@ namespace L
         public float cameraCollisionOffset = 0.2f;
         public float minimumCollisionOffset = 0.2f;
 
+        public float lockedPivotPosition = 2.25f;
+        public float unlockedPivotPosition = 1.65f;
+        
 
         public Transform currentLockOnTarget;
         List<CharacterManager> availableTargets = new List<CharacterManager>();
@@ -44,17 +49,18 @@ namespace L
 
         private void Awake()
         {
-            singleton = this;
+            singelton = this;
             myTransform = transform;
-            defaultPositon = cameraTransform.localPosition.z;
+            defaultPosition = cameraTransform.localPosition.z;
             ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
             targetTransform = FindObjectOfType<PlayerManager>().transform;
             inputHandler = FindObjectOfType<InputHandler>();
+            playerManager = FindObjectOfType<PlayerManager>();
         }
 
         private void Start()
         {
-
+            environmentLayer = LayerMask.NameToLayer("Enviroment");
         }
 
         public void FollowTarget(float delta)
@@ -108,7 +114,7 @@ namespace L
 
         private void HandleCameraCollision(float delta)
         {
-            targetPosition = defaultPositon;
+            targetPosition = defaultPosition;
             RaycastHit hit;
             Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
             direction.Normalize();
@@ -146,11 +152,25 @@ namespace L
                     Vector3 lockTargetDirection = character.transform.position - targetTransform.position;
                     float distanceFromTarget = Vector3.Distance(targetTransform.position , character.transform.position);
                     float viewableAngle = Vector3.Angle(lockTargetDirection,cameraTransform.forward);
+                    RaycastHit hit;
 
                     if(character.transform.root != targetTransform.transform.root && viewableAngle > -50
                     && viewableAngle < 50 && distanceFromTarget <= maximumLockOnDistance) 
                     {
-                        availableTargets.Add(character);
+                        if(Physics.Linecast(playerManager.lockOnTransform.position,character.lockOnTransform.position,out hit))
+                        {
+                            Debug.DrawLine(playerManager.lockOnTransform.position,character.lockOnTransform.position);
+
+                            if(hit.transform.gameObject.layer == environmentLayer)
+                            {
+                                //
+                            }
+                            else
+                            {
+                                availableTargets.Add(character);
+
+                            }
+                        }
                     }
                 }
             }
@@ -168,8 +188,10 @@ namespace L
                 if(inputHandler.lockOnFlag)
                 {
                     Vector3 relativeEnemyPosition = currentLockOnTarget.InverseTransformPoint(availableTargets[k].transform.position);
-                    var distanceFromLeftTarget = currentLockOnTarget.transform.position.x - availableTargets[k].transform.position.x;
-                    var distanceFromRightTarget = currentLockOnTarget.transform.position.x + availableTargets[k].transform.position.x;
+                    //var distanceFromLeftTarget = currentLockOnTarget.transform.position.x - availableTargets[k].transform.position.x;
+                    //var distanceFromRightTarget = currentLockOnTarget.transform.position.x + availableTargets[k].transform.position.x;
+                    var distanceFromLeftTarget = currentLockOnTarget.transform.position.x + availableTargets[k].transform.position.x;
+                    var distanceFromRightTarget = currentLockOnTarget.transform.position.x - availableTargets[k].transform.position.x;
 
                     if(relativeEnemyPosition.x > 0.00 && distanceFromLeftTarget < shortestDistanceOfLeftTarget)
                     {
@@ -191,6 +213,25 @@ namespace L
             availableTargets.Clear();
             nearestLockOnTarget = null;
             currentLockOnTarget = null;
+        }
+
+        public void SetCameraHeight()
+        {
+            Vector3 velocity = Vector3.zero;
+            Vector3 newLockedPosition = new Vector3(0,lockedPivotPosition);
+            Vector3 newUnlockedPosition = new Vector3(0,unlockedPivotPosition);
+
+            if(currentLockOnTarget != null)
+            {
+                cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp
+                (cameraPivotTransform.transform.localPosition,newLockedPosition,ref velocity,Time.deltaTime);
+
+            }
+            else
+            {
+                cameraPivotTransform.transform.localPosition =  Vector3.SmoothDamp
+                (cameraPivotTransform.transform.localPosition,newUnlockedPosition,ref velocity,Time.deltaTime);
+            }
         }
 
     }

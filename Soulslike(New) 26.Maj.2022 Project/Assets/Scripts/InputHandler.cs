@@ -90,7 +90,7 @@ namespace L
 
     public void TickInput(float delta)
     {
-        MoveInput(delta);
+        HandleMoveInput(delta);
         HandleRollingInput(delta);
         HandleAttackInput(delta);
         HandleQuickslotsInput();
@@ -98,7 +98,7 @@ namespace L
         HandleLockOnInput();
     }
 
-    private void MoveInput(float delta)
+    private void HandleMoveInput(float delta)
     {
         horizontal = movementInput.x;
         vertical = movementInput.y;
@@ -254,6 +254,8 @@ namespace L
                 cameraHandler.currentLockOnTarget = cameraHandler.rightLockOnTarget;
             }
         }
+
+        cameraHandler.SetCameraHeight();
     }
 
    
