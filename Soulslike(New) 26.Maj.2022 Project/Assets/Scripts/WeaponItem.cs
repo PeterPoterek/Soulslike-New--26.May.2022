@@ -12,6 +12,7 @@ namespace L
         [Header("Idle Animations")]
         public string right_Hand_Idle;
         public string left_Hand_Idle;
+        public string th_Idle;
 
         [Header("One Handed Attacks")]
         public string OH_Light_Attack_1;
