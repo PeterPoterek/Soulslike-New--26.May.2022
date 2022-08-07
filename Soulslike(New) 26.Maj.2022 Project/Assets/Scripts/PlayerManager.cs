@@ -11,8 +11,8 @@ namespace L
         CameraHandler cameraHandler;
         PlayerLocomotion playerLocomotion;
         InteractableUI interactableUI;
-        public GameObject interactableUIGameObject;
-        public GameObject itemInteractableGameObject;
+        public GameObject interactionPopUp;
+        public GameObject itemPopUpGameObject;
 
         public bool isInteracting;
 
@@ -101,7 +101,7 @@ namespace L
                     {
                         string interactableText = interactableObject.interactableText;
                         interactableUI.interactableText.text = interactableText;
-                        interactableUIGameObject.SetActive(true);
+                        interactionPopUp.SetActive(true);
 
                         if(inputHandler.a_Input)
                         {
@@ -112,14 +112,14 @@ namespace L
             }
             else
             {
-                if(interactableUIGameObject != null)
+                if(interactionPopUp != null)
                 {
-                    interactableUIGameObject.SetActive(false);
+                    interactionPopUp.SetActive(false);
                 }
 
-                if(itemInteractableGameObject != null && inputHandler.a_Input)
+                if(itemPopUpGameObject != null && inputHandler.a_Input)
                 {
-                    itemInteractableGameObject.SetActive(false);
+                    itemPopUpGameObject.SetActive(false);
                 }
             }
         }

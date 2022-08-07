@@ -148,6 +148,9 @@ public class CameraHandler : MonoBehaviour
                  float viewableAngle = Vector3.Angle(lockTargetDirection,cameraTransform.forward);
                  RaycastHit hit;
 
+                 
+                 
+
                  if(character.transform.root != targetTransform.transform.root && 
                  viewableAngle > -50 && viewableAngle< 50 && distanceFromTarget <= maximumLockOnDistance)
                  {
@@ -209,6 +212,8 @@ public class CameraHandler : MonoBehaviour
 
      public void ClearLockOnTargets()
      {
+        
+
          avalibleTargets.Clear();
          nearestLockOnTarget = null;
          currentLockOnTarget = null;

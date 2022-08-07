@@ -13,6 +13,12 @@ namespace L
         public GameObject hudWindow;
         public GameObject selectWindow;
         public GameObject weaponInventoryWindow;
+        public GameObject equipmentScreenWindow;
+        [Header("Equipment Window Slots Selected")]
+        public bool rightHandSlot01Selected;
+        public bool rightHandSlot02Selected;
+        public bool leftHandSlot01Selected;
+        public bool leftHandSlot02Selected;
 
 
         [Header("Weapon Inventory")]
@@ -24,7 +30,7 @@ namespace L
 
         private void Awake()
         {
-            //equipmentWindowUI = FindObjectOfType<EquipmentWindowUI>();
+
         }
 
         private void Start()
@@ -71,7 +77,16 @@ namespace L
 
         public void CloseAllInventoryWindows()
         {
+            ResetAllSelectedSlots();
             weaponInventoryWindow.SetActive(false);
+            equipmentScreenWindow.SetActive(false);
+        }
+        public void ResetAllSelectedSlots()
+        {
+            rightHandSlot01Selected = false;
+            rightHandSlot02Selected = false;
+            leftHandSlot01Selected = false;
+            leftHandSlot02Selected = false;
         }
     }
 
