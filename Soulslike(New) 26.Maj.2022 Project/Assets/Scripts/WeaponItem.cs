@@ -21,6 +21,10 @@ namespace L
         public string OH_Heavy_Attack_1;
         public string OH_Heavy_Attack_2;
 
+        [Header("Two Handed Attacks")]
+        public string TH_Light_Attack_01;
+        public string TH_Light_Attack_02;
+
         [Header("Stamina Cost")]
         public int baseStaminaCost;
         public float lightAttackMultiplier;

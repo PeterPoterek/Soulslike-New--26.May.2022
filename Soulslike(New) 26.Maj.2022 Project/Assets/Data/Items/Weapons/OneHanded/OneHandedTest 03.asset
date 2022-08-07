@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7f3a4638e3c3724aa92841d69db6a0d, type: 3}
-  m_Name: OneHandedTest 01
+  m_Name: OneHandedTest 03
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 8ceab971ebc97324785b881d7856d80e, type: 3}
-  itemName: OneHandedTest 01
-  modelPrefab: {fileID: 4150021682158327776, guid: bd5094e65cb50624081fe961eba76051, type: 3}
+  itemIcon: {fileID: 21300000, guid: 376edf16336611342ad1e5d8d29c066f, type: 3}
+  itemName: OneHandedTest 02
+  modelPrefab: {fileID: 4732172886399265874, guid: 8f82e7496ff23434696577a27dd48e83, type: 3}
   isUnarmed: 0
   right_Hand_Idle: Right_Arm_Idle_01
   left_Hand_Idle: Left_Arm_Idle_01
@@ -28,4 +28,4 @@ MonoBehaviour:
   TH_Light_Attack_02: TH_Light_Attack_02
   baseStaminaCost: 20
   lightAttackMultiplier: 1
-  heavyAttackMultiplier: 2
+  heavyAttackMultiplier: 2.5
