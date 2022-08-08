@@ -277,7 +277,7 @@ namespace L
             else
             {
                 weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon,false);
-                weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon,false);
+                weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon,true);
             }
         }
     }

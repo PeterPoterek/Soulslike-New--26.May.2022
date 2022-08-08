@@ -205,6 +205,7 @@ MonoBehaviour:
   mouseY: 0
   b_Input: 0
   a_Input: 0
+  y_Input: 0
   rb_Input: 0
   rt_Input: 0
   jump_Input: 0
@@ -217,6 +218,7 @@ MonoBehaviour:
   d_Pad_Left: 0
   d_Pad_Right: 0
   rollFlag: 0
+  twoHandFlag: 0
   sprintFlag: 0
   comboFlag: 0
   lockOnFlag: 0
@@ -235,8 +237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockOnTransform: {fileID: 1319431772}
-  interactableUIGameObject: {fileID: 0}
-  itemInteractableGameObject: {fileID: 0}
+  interactionPopUp: {fileID: 0}
+  itemPopUpGameObject: {fileID: 0}
   isInteracting: 0
   isSprinting: 0
   isInAir: 0
@@ -283,13 +285,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1225583223337818, guid: c2e12a23c03102543ab990b5a676fb53, type: 3}
       propertyPath: m_Name
-      value: NewModel
+      value: PlayerModel
       objectReference: {fileID: 0}
     - target: {fileID: 1378263215649708, guid: c2e12a23c03102543ab990b5a676fb53, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1378746646799232, guid: c2e12a23c03102543ab990b5a676fb53, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393129575764748, guid: c2e12a23c03102543ab990b5a676fb53, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -305,9 +311,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1952637821438688, guid: c2e12a23c03102543ab990b5a676fb53, type: 3}
+    - target: {fileID: 1877607342845262, guid: c2e12a23c03102543ab990b5a676fb53, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888318990717412, guid: c2e12a23c03102543ab990b5a676fb53, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952637821438688, guid: c2e12a23c03102543ab990b5a676fb53, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162905985432886, guid: c2e12a23c03102543ab990b5a676fb53, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4937899183284480, guid: c2e12a23c03102543ab990b5a676fb53, type: 3}
       propertyPath: m_RootOrder
@@ -461,14 +479,15 @@ MonoBehaviour:
   leftWeapon: {fileID: 11400000, guid: e56d678dc721bd447b3dec7a0ffa9c3a, type: 2}
   unarmedWeapon: {fileID: 11400000, guid: 8c471f96c951f9745a9fc0d6cfaa66a9, type: 2}
   weaponInRightHandSlots:
-  - {fileID: 11400000, guid: e56d678dc721bd447b3dec7a0ffa9c3a, type: 2}
-  - {fileID: 11400000, guid: 8b0bcc3e3a6ffa743b05c7f3729ef374, type: 2}
+  - {fileID: 11400000, guid: 8c471f96c951f9745a9fc0d6cfaa66a9, type: 2}
+  - {fileID: 11400000, guid: 8c471f96c951f9745a9fc0d6cfaa66a9, type: 2}
   weaponInLeftHandSlots:
-  - {fileID: 11400000, guid: e56d678dc721bd447b3dec7a0ffa9c3a, type: 2}
-  - {fileID: 11400000, guid: 8b0bcc3e3a6ffa743b05c7f3729ef374, type: 2}
+  - {fileID: 11400000, guid: 8c471f96c951f9745a9fc0d6cfaa66a9, type: 2}
+  - {fileID: 11400000, guid: 8c471f96c951f9745a9fc0d6cfaa66a9, type: 2}
   currentRightWeaponIndex: 0
   currentLeftWeaponIndex: 0
-  weaponsInventory: []
+  weaponsInventory:
+  - {fileID: 11400000, guid: 8b0bcc3e3a6ffa743b05c7f3729ef374, type: 2}
 --- !u!114 &500009564
 MonoBehaviour:
   m_ObjectHideFlags: 0
