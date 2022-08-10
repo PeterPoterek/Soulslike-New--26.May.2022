@@ -4,16 +4,8 @@ using UnityEngine;
 
 namespace L
 {
-    public class PlayerStats : MonoBehaviour
+    public class PlayerStats : CharacterStats
     {
-        [Header("Health")]
-        public int healthLevel = 10;
-        public int maxHealth;
-        public int currHealth;
-        [Header("Stamina")]
-        public int staminaLevel = 10;
-        public int maxStamina;
-        public int currStamina;
 
 
 

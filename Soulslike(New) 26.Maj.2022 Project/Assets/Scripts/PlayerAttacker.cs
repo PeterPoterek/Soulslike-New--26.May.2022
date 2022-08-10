@@ -36,14 +36,12 @@ namespace L
              {
                
                animatorHandler.PlayTargetAnimation(weapon.OH_Heavy_Attack_2,true);
-              Invoke("SetAnimatorWeight",2f);
 
              }
              else if(lastAttack == weapon.TH_Light_Attack_01)
              {
               
               animatorHandler.PlayTargetAnimation(weapon.TH_Light_Attack_02,true);
-              Invoke("SetAnimatorWeight",2f);
              }
 
             }
@@ -82,11 +80,17 @@ namespace L
           }
         }
 
-        void SetAnimatorWeight()
+        public void SetBothHandsToWeight1()
         {
           animatorHandler.anim.SetLayerWeight(4,1);
-
+          Debug.Log("1");
         }
+        public void SetBothHandsToWeight0()
+        {
+          animatorHandler.anim.SetLayerWeight(4,0);
+          Debug.Log("0");
+        }
+
     }
 
 }

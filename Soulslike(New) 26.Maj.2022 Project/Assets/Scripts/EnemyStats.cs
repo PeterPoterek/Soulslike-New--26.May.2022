@@ -4,11 +4,9 @@ using UnityEngine;
 
 namespace L
 {
-    public class EnemyStats : MonoBehaviour
+    public class EnemyStats : CharacterStats
     {
-        public int healthLevel = 10;
-        public int maxHealth;
-        public int currHealth;
+       
 
         Animator animator;
 
