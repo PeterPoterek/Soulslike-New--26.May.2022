@@ -13,7 +13,6 @@ namespace L
         public Rigidbody enemyRigidBody;
 
         public LayerMask detectionLayer;
-        public CharacterStats currentTarget;
 
         public float distanceFromTarget;
         public float stoppingDistance = 1;
@@ -33,27 +32,6 @@ namespace L
         }
         public void HandleDetection()
         {
-           Collider[] colliders = Physics.OverlapSphere(transform.position,enemyManager.detectionRadius,detectionLayer);
-
-           for (int i = 0; i < colliders.Length; i++)
-           {
-            CharacterStats characterStats = colliders[i].transform.GetComponent<CharacterStats>();
-
-            if(characterStats != null)
-            {
-
-
-                Vector3  targetDirection = characterStats.transform.position - transform.position;
-                float viewableAngle = Vector3.Angle(targetDirection,  transform.forward);
-
-                if(viewableAngle > enemyManager.minimumDetectionAngle
-                && viewableAngle < enemyManager.maximumDetectionAngle)
-                {
-                    currentTarget = characterStats;
-                    Debug.Log(characterStats);
-                }
-            }
-           }
         }
 
         public void HandleMoveToTarget()
@@ -61,8 +39,8 @@ namespace L
             if(enemyManager.isPerformingAction)
             return;
             
-            Vector3 targetDirection = currentTarget.transform.position - transform.position;
-            distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
+            Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+            distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
             float viewableAngle = Vector3.Angle(targetDirection,transform.forward);
 
 
@@ -91,7 +69,7 @@ namespace L
         {
             if(enemyManager.isPerformingAction)
             {
-                Vector3 direction = currentTarget.transform.position - transform.position;
+                Vector3 direction = enemyManager.currentTarget.transform.position - transform.position;
                 direction.y = 0;
                 direction.Normalize();
 
@@ -109,7 +87,7 @@ namespace L
                 Vector3 targetVelocity = enemyRigidBody.velocity;
 
                 navMeshAgent.enabled = true;
-                navMeshAgent.SetDestination(currentTarget.transform.position);
+                navMeshAgent.SetDestination(enemyManager.currentTarget.transform.position);
                 enemyRigidBody.velocity = targetVelocity;
                 transform.rotation = Quaternion.Slerp
                 (transform.rotation,navMeshAgent.transform.rotation , rotationSpeed / Time.deltaTime);
