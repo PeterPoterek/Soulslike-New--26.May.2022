@@ -6,22 +6,22 @@ namespace  L
 {
     public class EnemyAnimatorManager : AnimatorManager
     {
-        EnemyLocomotionManager enemyLocomotionManager;
+        EnemyManager enemyManager;
         private void Awake() {
             anim = GetComponent<Animator>();
 
-            enemyLocomotionManager = GetComponentInParent<EnemyLocomotionManager>();
+            enemyManager = GetComponentInParent<EnemyManager>();
         }
 
         private void OnAnimatorMove() {
             float delta = Time.deltaTime;
-            enemyLocomotionManager.enemyRigidBody.drag = 0;
+            enemyManager.enemyRigidBody.drag = 0;
 
             Vector3 deltaPostion = anim.deltaPosition;
             deltaPostion.y = 0;
 
             Vector3 velocity = deltaPostion / delta;
-            enemyLocomotionManager.enemyRigidBody.velocity = velocity; // * movespeed
+            enemyManager.enemyRigidBody.velocity = velocity * enemyManager.movespeed;
 
         }
     }
