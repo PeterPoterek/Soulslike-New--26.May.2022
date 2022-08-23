@@ -17,7 +17,7 @@ namespace L
         public Rigidbody enemyRigidBody;
 
         public bool isPerformingAction;
-        
+        public bool isInteracting;
         public float distanceFromTarget;
         public float rotationSpeed = 25f;
         public float maximumAttackRange = 1.5f;
@@ -53,6 +53,8 @@ namespace L
         private void Update()
         {
             HandleRecoveryTimer();
+
+            isInteracting = enemyAnimatorManager.anim.GetBool("isInteracting");
         }
         private void FixedUpdate()
         {
