@@ -26,14 +26,17 @@ namespace L
             for (int i = 0; i < colliders.Length; i++)
             {
                 CharacterStats characterStats = colliders[i].transform.GetComponent<CharacterStats>();
+                
+                Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+                float viewableAngle = Vector3.Angle(targetDirection,transform.forward);
 
                 if(characterStats != null)
                 {
                     Vector3 targetsDirection = characterStats.transform.position - enemyManager.transform.position;
-                    enemyManager.viewableAngle = Vector3.Angle(targetsDirection, enemyManager.transform.forward);
+                    viewableAngle = Vector3.Angle(targetsDirection, enemyManager.transform.forward);
 
-                    if(enemyManager.viewableAngle > enemyManager.minimumDetectionAngle 
-                    && enemyManager.viewableAngle < enemyManager.maximumDetectionAngle)
+                    if(viewableAngle > enemyManager.minimumDetectionAngle 
+                    && viewableAngle < enemyManager.maximumDetectionAngle)
                     {
                         enemyManager.currentTarget = characterStats;
                         isSleeping = false;

@@ -18,7 +18,6 @@ namespace L
 
         public bool isPerformingAction;
         public bool isInteracting;
-        public float distanceFromTarget;
         public float rotationSpeed = 25f;
         public float maximumAttackRange = 1.5f;
 
@@ -30,7 +29,6 @@ namespace L
         public float minimumDetectionAngle = 50;
         public float maximumDetectionAngle = -50;
 
-        public float viewableAngle;
 
         public float currentRecoveryTime = 0;
 
